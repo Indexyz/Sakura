@@ -1,0 +1,16 @@
+<html>
+	<head>
+		{% block header %}{% endblock %}
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
+		<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css" />
+		<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css" />
+		<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css" />
+        <link rel="stylesheet" href="/public/style/custom.css" />
+
+	</head>
+	<body>
+		{% block body %}{% endblock %}
+	</body>
+</html>

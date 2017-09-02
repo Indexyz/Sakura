@@ -1,0 +1,10 @@
+{% extends "navbar.nj" %}
+
+{% block content %}
+	<div id="section-image">
+		<div class="item-be-center image-text-center">
+			<h1>Sakure</h1>
+			<p>{{ __('index.section.message') }}</p>
+		</div>
+	</div>
+{% endblock %}

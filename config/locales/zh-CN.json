@@ -1,0 +1,28 @@
+{
+    "index": {
+        "section": {
+            "message": "一个简洁的面板"
+        }
+    },
+    "navbar": {
+        "login": "登陆",
+        "register": "注册",
+        "code": "邀请码"
+    },
+    "auth": {
+        "login": {
+            "name": "登陆",
+            "desc": "登陆到你的账户"
+        },
+        "register": {
+            "name": "注册",
+            "desc": "注册一个新账号"
+        }
+    },
+    "useful": {
+        "email": "邮箱",
+        "password": "密码",
+        "invite_code": "邀请码",
+        "username": "用户名"
+    }
+}

@@ -1,0 +1,15 @@
+{% extends "base.nj" %}
+
+{% block body %}
+    <header class="navbar sakura-navbar">
+        <section class="navbar-section">
+            <a href="/" class="btn btn-link">Sakura</a>
+        </section>
+        <section class="navbar-section">
+            <a href="/" class="btn btn-link">{{ __('navbar.code') }}</a>
+            <a href="/auth/login" class="btn btn-link">{{ __('navbar.login') }}</a>
+            <a href="/auth/register" class="btn btn-link">{{ __('navbar.register') }}</a>
+        </section>
+    </header>
+    {% block content %}{% endblock %}
+{% endblock %}

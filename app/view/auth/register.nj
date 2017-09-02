@@ -1,0 +1,32 @@
+{% extends "../navbar.nj" %}
+
+{% block content %}
+	<div class="item-be-center">
+		<div class="card login-card">
+			<div class="card-header">
+				<div class="card-title h5">{{ __('auth.register.name') }}
+				</div>
+				<div class="card-subtitle text-gray">{{ __('auth.register.desc') }}
+				</div>
+			</div>
+			<div class="card-body">
+				<div class="form-group">
+					<label class="form-label" for="input-email">{{ __('useful.email') }}</label>
+					<input class="form-input" type="text" id="input-email" placeholder="{{ __('useful.email') }}" />
+
+					<label class="form-label" for="input-password">{{ __('useful.password') }}</label>
+					<input class="form-input" type="password" id="input-password" placeholder="{{ __('useful.password') }}" />
+
+					<label class="form-label" for="input-username">{{ __('useful.username') }}</label>
+					<input class="form-input" type="text" id="input-username" placeholder="{{ __('useful.username') }}" />
+
+					<label class="form-label" for="input-code">{{ __('useful.invite_code') }}</label>
+					<input class="form-input" type="text" id="input-code" placeholder="{{ __('useful.invite_code') }}" />
+				</div>
+			</div>
+			<div class="card-footer center">
+				<button class="btn btn-primary">{{ __('auth.register.name') }}</button>
+			</div>
+		</div>
+	</div>
+{% endblock %}

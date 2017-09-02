@@ -1,0 +1,41 @@
+.sakura-navbar {
+    padding-left: 2vw;
+    padding-right: 2vw;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    background-color: #eff1fa;
+    position:fixed;
+    width: 100%;
+}
+
+#section-image {
+    height: 100vh;
+    background-image: url("http://area.sinaapp.com/bingImg");
+    background-size: cover;
+    /* -webkit-filter: blur(3px) grayscale(12.5%); */
+    z-index: -1;
+}
+
+
+.item-be-center {
+    padding-top: 32px;
+    display: flex;
+    justify-content:center;
+    height: 100%;
+    align-items: center;
+    flex-direction: column;
+}
+
+.image-text-center > * {
+    color: #fff;
+}
+
+@media (min-width: 1025px) {
+    .login-card {
+        min-width: 50vw;
+    }
+}
+
+.center {
+    text-align: center
+}

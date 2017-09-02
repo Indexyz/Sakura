@@ -1,0 +1,26 @@
+{% extends "../navbar.nj" %}
+
+{% block content %}
+	<div class="item-be-center">
+		<div class="card login-card">
+			<div class="card-header">
+				<div class="card-title h5">{{ __('auth.login.name') }}
+				</div>
+				<div class="card-subtitle text-gray">{{ __('auth.login.desc') }}
+				</div>
+			</div>		
+			<div class="card-body">
+				<div class="form-group">
+					<label class="form-label" for="input-email">{{ __('useful.email') }}</label>
+					<input class="form-input" type="text" id="input-email" placeholder="{{ __('useful.email') }}" />
+
+					<label class="form-label" for="input-password">{{ __('useful.password') }}</label>
+					<input class="form-input" type="text" id="input-password" placeholder="{{ __('useful.password') }}" />
+				</div>
+			</div>
+			<div class="card-footer center">
+				<button class="btn btn-primary">{{ __('auth.login.name') }}</button>
+			</div>
+		</div>
+	</div>
+{% endblock %}
