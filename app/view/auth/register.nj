@@ -1,6 +1,7 @@
 {% extends "../navbar.nj" %}
 
 {% block content %}
+	<div class="blockNav"></div>
 	<div class="item-be-center">
 		<div class="card login-card">
 			<div class="card-header">
@@ -10,23 +11,123 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<div class="form-group">
+                <div class="toast login-message message-hide">
+                	
+                </div>
+				<div class="form-group email-group">
 					<label class="form-label" for="input-email">{{ __('useful.email') }}</label>
 					<input class="form-input" type="text" id="input-email" placeholder="{{ __('useful.email') }}" />
-
+				</div>
+				<div class="form-group password-group">
 					<label class="form-label" for="input-password">{{ __('useful.password') }}</label>
 					<input class="form-input" type="password" id="input-password" placeholder="{{ __('useful.password') }}" />
-
+				</div>
+				<div class="form-group username-group">
 					<label class="form-label" for="input-username">{{ __('useful.username') }}</label>
 					<input class="form-input" type="text" id="input-username" placeholder="{{ __('useful.username') }}" />
-
+				</div>
+				<div class="form-group code-group">
 					<label class="form-label" for="input-code">{{ __('useful.invite_code') }}</label>
-					<input class="form-input" type="text" id="input-code" placeholder="{{ __('useful.invite_code') }}" />
+					<input class="form-input" value="{{ ctx.query.code }}" type="text" id="input-code" placeholder="{{ __('useful.invite_code') }}" />
 				</div>
 			</div>
 			<div class="card-footer center">
-				<button class="btn btn-primary">{{ __('auth.register.name') }}</button>
+				<button class="btn btn-primary register-post">{{ __('auth.register.name') }}</button>
 			</div>
 		</div>
 	</div>
+
+{% endblock %}
+
+{% block script %}
+<script>
+	function addError(elem,message) {
+		$(elem).addClass("has-error")
+		$(elem + " > p").remove()
+
+		const textElme = document.createElement("p")
+		textElme.innerHTML = message
+		$(textElme).addClass("form-input-hint")
+
+		$(elem).append(textElme)
+	}
+
+	function removeError(elem) {
+		$(elem).removeClass("has-error")
+		$(elem + " > p").remove()
+	}
+
+	let hasError = false;
+	$(".register-post").click(function() {
+		// Check the form data
+
+		// check email address
+		if (!/^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/.test($("#input-email").val())) {
+			addError(".email-group", "{{ __('auth.errors.emailCheckError') }}") 
+			hasError = true
+		} else {
+			removeError(".email-group")
+		}
+
+		if ($("#input-password").val().length < 5) {
+			addError(".password-group", "{{ __('auth.errors.passwordCharNotEnough') }}") 
+			hasError = true
+		} else {
+			removeError(".password-group")
+		}
+
+		if ($("#input-username").val().length < 3) {
+			addError(".username-group", "{{ __('auth.errors.usernameCharNotEnough') }}")
+			hasError = true
+		} else {
+			removeError(".username-group")
+		}
+
+		if ($("#input-code").val().length === 0) {
+			addError(".code-group", "{{ __('auth.errors.codeIsEmpty') }}")
+			hasError = true
+		} else {
+			removeError(".code-group")
+		}
+
+
+		if (!hasError) {
+		// handle out api to register
+			const req = $.ajax({
+				url: "/auth/register",
+				method: "POST",
+				data: {
+					email: $("#input-email").val(),
+					password: $("#input-password").val(),
+					username: $("#input-username").val(),
+					code: $("#input-code").val(),
+					"_csrf": "{{ ctx.csrf }}"
+				},
+				dataType: "json"
+			})
+
+			req.done(function(message) {
+				const elem = $(".login-message");
+				elem.removeClass("message-hide")	
+				if (message.success) {
+					elem.addClass("toast-primary")
+						.html("{{ __('auth.register.success.message') }}")
+					setTimeout(function() {
+						window.location.href = "/auth/login"
+					}, 1000)
+				} else {
+					elem.addClass("toast-error")
+						.html(message.error)
+				}
+				console.log(message)
+			})
+
+			req.fail(function(xhr, textStatus, error) {
+				const elem = $(".login-message")
+				elem.removeClass("message-hide")
+				elem.html(JSON.parse(xhr.responseText).error)
+			})	
+		}
+	})
+</script>	
 {% endblock %}

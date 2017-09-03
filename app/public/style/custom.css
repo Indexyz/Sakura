@@ -1,8 +1,8 @@
 .sakura-navbar {
     padding-left: 2vw;
     padding-right: 2vw;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
+    padding-top: 6px;
+    padding-bottom: 6px;
     background-color: #eff1fa;
     position:fixed;
     width: 100%;
@@ -18,7 +18,7 @@
 
 
 .item-be-center {
-    padding-top: 32px;
+    /* padding-top: 44px; */
     display: flex;
     justify-content:center;
     height: 100%;
@@ -30,12 +30,33 @@
     color: #fff;
 }
 
-@media (min-width: 1025px) {
-    .login-card {
-        min-width: 50vw;
-    }
+.login-card {
+    min-width: 50vw;
 }
 
 .center {
     text-align: center
+}
+
+.content-with-nav {
+    padding-top: 44px;
+}
+
+.container {
+    padding-top: 2vh;
+    padding-left: 4vw;
+    padding-right: 4vw;
+    width: 100%;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.underline {
+    border-bottom: 2px #000000 solid !important;
+}
+
+.message-hide {
+    display: none;
 }

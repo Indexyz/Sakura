@@ -1,0 +1,42 @@
+{% extends "../navbar.nj" %}
+
+{% block content %}
+	<div class="content-with-nav">
+		<div class="container">
+			<div class="card">
+				<div class="card-header">
+					<div class="card-title h5">{{ __('auth.codes.name') }}</div>
+					<div class="card-subtitle text-gray">{{ __('auth.codes.desc') }}</div>
+				</div>
+				<div class="card-body">
+					<table id="code-tabel" class="display" width="100%" cellspacing="0">
+						<thead>
+							<tr>
+								<td>{{ __('auth.codes.name') }}</td>
+								<td>{{ __('useful.link') }}</td>
+							</tr>
+						</thead>
+						<tbody>
+							{% for code in codes %}
+							<tr>
+								<td>{{ code.code }}</td>
+								<td><a href="/auth/register?code={{ code.code }}">{{ __('useful.link') }}</a></td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block script %}
+	<script>
+		$(function() {
+			$("#code-tabel").DataTable({
+				"searching": false
+			})
+		})
+	</script>
+{% endblock %}

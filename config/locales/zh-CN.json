@@ -16,13 +16,27 @@
         },
         "register": {
             "name": "注册",
-            "desc": "注册一个新账号"
+            "desc": "注册一个新账号",
+            "success": {
+                "message": "注册成功 请登陆"
+            }
+        },
+        "errors": {
+            "emailCheckError": "电子邮箱检查出错",
+            "passwordCharNotEnough": "密码长度太小 请输入至少 6 个字符",
+            "usernameCharNotEnough": "用户名长度太小 请输入至少 4 个字符",
+            "codeIsEmpty": "请输入邀请码"
+        },
+        "codes": {
+            "name": "邀请码",
+            "desc": "这是公开的邀请码 可能会有不定期放码"
         }
     },
     "useful": {
         "email": "邮箱",
         "password": "密码",
         "invite_code": "邀请码",
-        "username": "用户名"
+        "username": "用户名",
+        "link": "链接"
     }
 }
