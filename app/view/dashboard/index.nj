@@ -1,0 +1,94 @@
+{% extends "./base.nj" %}
+
+
+{% block dashboard %}
+<div class="container">
+	<div class="columns">
+		<div class="column col-6 col-md-12">
+			<div class="card">
+		
+				<div class="card-header">
+					<div class="card-title h5">{{ __('dashboard.index.traffic.name') }}</div>
+					<div class="card-subtitle text-gray">{{ __('dashboard.index.traffic.desc') }}</div>
+				</div>
+				<div class="card-body">
+					<div id="traffic_chart" style="height: 300px; width: 100%;"></div>
+					<script src="//cdn.staticfile.org/canvasjs/1.7.0/canvasjs.js"></script>
+					<script type="text/javascript">
+						var chart = new CanvasJS.Chart("traffic_chart", {
+							title:{
+								text: "{{ __('dashboard.index.traffic.chart.name') }}",
+								fontFamily: "Impact",
+								fontWeight: "normal"
+							},
+							legend:{
+								verticalAlign: "bottom",
+								horizontalAlign: "center"
+							},
+							data: [{
+								indexLabelFontSize: 20,
+								indexLabelFontFamily: "Garamond",
+								indexLabelFontColor: "darkgrey",
+								indexLabelLineColor: "darkgrey",
+								indexLabelPlacement: "outside",
+								type: "doughnut",
+								showInLegend: true,
+								dataPoints: [{
+									y: {{ traffic.total - traffic.used }},
+									legendText: "{{ __('dashboard.index.traffic.chart.remain') }} {{ ctx.utils.math.round((traffic.total - traffic.used) / traffic.total * 100) }} %",
+									indexLabel: "{{ ctx.utils.math.round((traffic.total - traffic.used) / traffic.total * 100) }} %"
+								}, {
+									y: {{ traffic.used }},
+									legendText: "{{ __('dashboard.index.traffic.chart.used') }} {{ ctx.utils.math.round(traffic.used / traffic.total * 100) }} %",
+									indexLabel: "{{ ctx.utils.math.round(traffic.used / traffic.total * 100) }} %"
+								}]
+							}]
+						})
+						chart.render();
+					</script>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-header">
+					<div class="card-title h5">Traffic</div>
+					<div class="card-subtitle text-gray">Everything you used to run</div>
+				</div>
+				<div class="card-body">
+					Empower every person and every organization on the planet to achieve more.
+				</div>
+			</div>
+		</div>
+		<div class="column col-6 col-md-12">
+			<div class="card">
+		
+				<div class="card-header">
+					<div class="card-title h5">{{ __('dashboard.index.signup.name') }}</div>
+					<div class="card-subtitle text-gray">Get free traffic everyday</div>
+				</div>
+				<div class="card-body">
+					Empower every person and every organization on the planet to achieve more.
+				</div>
+				<div class="card-footer">
+					<button id="signup-button" class="btn btn-primary">Do</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block script %}
+	<script>
+		$("#signup-button").click(function() {
+			const req = $.ajax({
+				url: "/dashboard/index/signup",
+				method: "GET",
+				dataType: "json"
+			})
+
+			req.done(function(message) {
+				console.log(message)
+			})
+		})
+	</script>
+{% endblock %}

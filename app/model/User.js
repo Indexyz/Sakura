@@ -1,4 +1,5 @@
 'use strict';
+const crypto = require('crypto');
 
 module.exports = app => {
     const { mongoose } = app;
@@ -9,15 +10,37 @@ module.exports = app => {
         email: { type: String, required: true, unique: true },
         invite: mongoose.Schema.Types.ObjectId,
         inviteNumber: { type: Number, default: 0 },
+        join: { type: Date, required: true, default: Date.now },
+        lastSignup: Date,
+
+        // For shadowsocks connect
+        port: { type: Number, required: true },
+        linkPassword: { type: String, required: true },
+
+        // Bill system produces
+        initProduce: mongoose.Schema.Types.ObjectId,
+        produce: Array,
     });
+
+    function getSaltedPassword(password) {
+        return crypto.createHmac('sha1', app.config.salt)
+            .update(password)
+            .digest()
+            .toString('base64');
+    }
 
     userSchema.pre('save', function(next) {
         // SHA1 password
         if (!this.isModified('password')) return next();
-        this.password = this.service.user.getSaltedPassword(this.password);
+        // this.password = this.ap
+        this.password = getSaltedPassword(this.password);
         console.log(this.password);
         return next();
     });
 
-    return mongoose.model('Users', userSchema);
+    const model = mongoose.model('Users', userSchema);
+
+    // Bind method to model, because schema.methods is wrong
+    model.getSaltedPassword = getSaltedPassword;
+    return model;
 };

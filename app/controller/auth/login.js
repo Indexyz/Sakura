@@ -17,7 +17,7 @@ module.exports = app => {
                 return;
             }
             this.ctx.status = 404;
-            this.ctx.body = { success: 0, error: 'Not found user' };
+            this.ctx.body = { success: 0, error: this.ctx.__('auth.errors.notFoundUser') };
         }
     }
     return LoginController;

@@ -40,11 +40,12 @@
 }
 
 .content-with-nav {
-    padding-top: 44px;
+    border-top: 44px;
+    border-top-style: solid;
 }
 
 .container {
-    padding-top: 2vh;
+    padding-top: 3vh;
     padding-left: 4vw;
     padding-right: 4vw;
     width: 100%;
@@ -60,4 +61,20 @@
 
 .message-hide {
     display: none;
+}
+
+#dropdown-user-menu {
+    z-index: 2;
+}
+
+.icon-in-material {
+    width: 1em;
+    height: 1em;
+    font-size: 14px;
+    line-height: 20px;
+    text-indent: 0px;
+}
+
+.card {
+    margin-bottom: 8px;
 }

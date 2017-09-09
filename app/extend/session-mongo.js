@@ -7,7 +7,7 @@ class SessionStore {
         const res = yield this.app.model.Session.findOne({
             key,
         });
-        return res.value;
+        return res ? res.value : null;
     }
     * set(key, value, maxAge) {
         const oldDocment = yield this.app.model.Session.findOne({ key });

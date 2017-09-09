@@ -7,12 +7,17 @@
     "navbar": {
         "login": "登陆",
         "register": "注册",
-        "code": "邀请码"
+        "code": "邀请码",
+        "dashboard": "用户中心",
+        "logout": "登出"
     },
     "auth": {
         "login": {
             "name": "登陆",
-            "desc": "登陆到你的账户"
+            "desc": "登陆到你的账户",
+            "success": {
+                "message": "登录成功"
+            }
         },
         "register": {
             "name": "注册",
@@ -25,7 +30,8 @@
             "emailCheckError": "电子邮箱检查出错",
             "passwordCharNotEnough": "密码长度太小 请输入至少 6 个字符",
             "usernameCharNotEnough": "用户名长度太小 请输入至少 4 个字符",
-            "codeIsEmpty": "请输入邀请码"
+            "codeIsEmpty": "请输入邀请码",
+            "notFoundUser": "未找到用户"
         },
         "codes": {
             "name": "邀请码",
@@ -38,5 +44,39 @@
         "invite_code": "邀请码",
         "username": "用户名",
         "link": "链接"
+    },
+    "dashboard": {
+        "user": {
+            "name": "用户",
+            "index": "首页",
+            "history": "历史",
+            "invite": "邀请",
+            "setting": "设置"
+        },
+        "link": {
+            "name": "连接",
+            "nodes": "节点",
+            "forward": "中转链接"
+        },
+        "produce": {
+            "name": "产品",
+            "store": "商店",
+            "list": "购物历史"
+        },
+        "index": {
+            "traffic": {
+                "name": "流量",
+                "desc": "你有的和没有的",
+                "chart": {
+                    "name": "流量使用情况",
+                    "used": "已用",
+                    "remain": "剩余"
+                }
+            },
+            "signup": {
+                "name": "每日签到",
+                "desc": "每天签到获取流量"
+            }
+        }
     }
 }

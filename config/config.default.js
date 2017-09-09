@@ -2,6 +2,10 @@
 
 const path = require('path');
 
+const KB = 1024,
+    MB = KB * KB,
+    GB = MB * KB;
+
 module.exports = appInfo => {
     const config = {};
 
@@ -19,16 +23,31 @@ module.exports = appInfo => {
         defaultExtension: '.nj',
     };
 
-    config.middleware = [ 'user' ];
+    config.middleware = [ 'user', 'utils' ];
 
     // add your config here
 
     config.mongoose = {
-        url: 'mongodb://127.0.0.1/example',
+        url: 'mongodb://127.0.0.1/sakura',
         options: {},
     };
 
-    config.salt = 'ChangeMe';
+    Object.assign(config, {
+        salt: 'ChangeMe',
+        port: {
+            max: 65565,
+            min: 10000,
+        },
+        produce: {
+            initTraffic: 10 * GB,
+        },
+        signup: {
+            enable: true,
+            // Size is MB
+            max: 128,
+            min: 32,
+        },
+    });
 
     return config;
 };

@@ -6,9 +6,28 @@
             <a href="/" class="btn btn-link">Sakura</a>
         </section>
         <section class="navbar-section">
-            <a href="/auth/code" class="btn btn-link">{{ __('navbar.code') }}</a>
-            <a href="/auth/login" class="btn btn-link">{{ __('navbar.login') }}</a>
-            <a href="/auth/register" class="btn btn-link">{{ __('navbar.register') }}</a>
+            {% if not ctx.user %}
+                <a href="/auth/code" class="btn btn-link">{{ __('navbar.code') }}</a>
+                <a href="/auth/login" class="btn btn-link">{{ __('navbar.login') }}</a>
+                <a href="/auth/register" class="btn btn-link">{{ __('navbar.register') }}</a>
+            {% else %}
+                <div class="dropdown dropdown-right">
+                    <div class="btn-group">
+                        <a href="#" class="btn btn-link dropdown-toggle" tabindex="0">
+                            {{ ctx.user.username }} <i class="icon icon-caret"></i>
+                        </a>
+
+                        <ul id="dropdown-user-menu" class="menu">
+                            <li class="menu-item">
+                                <a href="/dashboard">{{ __('navbar.dashboard') }}</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/auth/logout">{{ __('navbar.logout') }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            {% endif %}
         </section>
     </header>
     {% block content %}{% endblock %}

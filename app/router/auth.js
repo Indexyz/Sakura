@@ -6,5 +6,7 @@ module.exports = app => {
     app.get('/auth/register', app.controller.auth.register.get);
     app.post('/auth/register', app.controller.auth.register.post);
 
+    app.get('/auth/logout', app.controller.auth.logout.get);
+
     app.get('/auth/code', app.controller.auth.code.get);
 };

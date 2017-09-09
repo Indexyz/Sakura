@@ -6,7 +6,7 @@ module.exports = app => {
         * create(user) {
             const codeUUID = uuid.v4();
             const code = new this.ctx.model.InviteCode({
-                owner: user._id,
+                owner: user === null ? null : user._id,
                 code: codeUUID,
             });
             yield code.save();

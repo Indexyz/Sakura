@@ -1,0 +1,51 @@
+{% extends "../navbar.nj" %}
+
+{% block content %}
+	<div class="container content-with-nav">
+		<div class="columns">
+			<div class="column col-3">
+				<ul class="menu">
+					<li class="divider" data-content="{{ __('dashboard.user.name') }}"></li>
+					<li class="menu-item">
+						<a class="active" href="#">
+							<i class="icon icon-apps"></i> {{ __('dashboard.user.index') }}
+						</a>
+						<a href="#">
+							<i class="material-icons icon icon-in-material">visibility</i> {{ __('dashboard.user.history') }}
+						</a>
+						<a href="#">
+							<i class="material-icons icon icon-in-material">person_add</i> {{ __('dashboard.user.invite') }}
+						</a>
+						<a href="#">
+							<i class="material-icons icon icon-in-material">settings </i> {{ __('dashboard.user.setting') }}
+						</a>
+					</li>
+
+				    <li class="divider" data-content="{{ __('dashboard.link.name') }}"></li>
+					<li class="menu-item">
+						<a href="#">
+							<i class="material-icons icon icon-in-material">dns</i> {{ __('dashboard.link.nodes') }}
+						</a>
+						<a href="#">
+							<i class="material-icons icon icon-in-material">timeline</i> {{ __('dashboard.link.forward') }}
+						</a>
+					</li>
+
+					<li class="divider" data-content="{{ __('dashboard.produce.name') }}"></li>
+					<li class="menu-item">
+						<a href="#">
+							<i class="material-icons icon icon-in-material">store</i> {{ __('dashboard.produce.store') }}
+						</a>
+						<a href="#">
+							<i class="material-icons icon icon-in-material">track_changes</i> {{ __('dashboard.produce.list') }}
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="column col-9">
+				{% block dashboard %}
+        		{% endblock %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

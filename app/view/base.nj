@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css" />
 		<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css" />
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         <link rel="stylesheet" href="/public/style/custom.css" />
 
 	</head>
