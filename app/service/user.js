@@ -1,4 +1,6 @@
 'use strict';
+const crypto = require('crypto');
+
 module.exports = app => {
     class User extends app.Service {
         * create(username, password, email, code) {
@@ -18,6 +20,13 @@ module.exports = app => {
                 return user;
             }
             throw new Error('Invite code is not found');
+        }
+
+        getSaltedPassword(password) {
+            return crypto.createHmac('sha1', app.config.salt)
+                .update(password)
+                .digest()
+                .toString('base64');
         }
     }
     return User;

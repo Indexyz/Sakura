@@ -6,6 +6,7 @@
     background-color: #eff1fa;
     position:fixed;
     width: 100%;
+    z-index: 3;
 }
 
 #section-image {

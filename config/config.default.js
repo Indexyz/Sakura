@@ -18,6 +18,9 @@ module.exports = appInfo => {
         defaultViewEngine: 'nunjucks',
         defaultExtension: '.nj',
     };
+
+    config.middleware = [ 'user' ];
+
     // add your config here
 
     config.mongoose = {

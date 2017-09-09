@@ -11,7 +11,7 @@
 				</div>
 			</div>
 			<div class="card-body">
-                <div class="toast login-message message-hide">
+                <div id="register-message" class="toast message-hide">
                 	
                 </div>
 				<div class="form-group email-group">
@@ -92,6 +92,7 @@
 
 
 		if (!hasError) {
+			$(".register-post").addClass("disabled")
 		// handle out api to register
 			const req = $.ajax({
 				url: "/auth/register",
@@ -107,7 +108,7 @@
 			})
 
 			req.done(function(message) {
-				const elem = $(".login-message");
+				const elem = $("#register-message");
 				elem.removeClass("message-hide")	
 				if (message.success) {
 					elem.addClass("toast-primary")
@@ -119,13 +120,14 @@
 					elem.addClass("toast-error")
 						.html(message.error)
 				}
-				console.log(message)
+				$(".register-post").removeClass("disabled")
 			})
 
 			req.fail(function(xhr, textStatus, error) {
-				const elem = $(".login-message")
+				const elem = $("#register-message")
 				elem.removeClass("message-hide")
 				elem.html(JSON.parse(xhr.responseText).error)
+				$(".register-post").removeClass("disabled")
 			})	
 		}
 	})

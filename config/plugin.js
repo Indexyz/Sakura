@@ -8,10 +8,6 @@ exports.nunjucks = {
     package: 'egg-view-nunjucks',
 };
 
-exports.view = {
-    enable: true,
-    package: 'egg-view',
-};
 exports.i18n = {
     defaultLocale: 'zh-CN',
 };
