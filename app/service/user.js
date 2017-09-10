@@ -51,9 +51,8 @@ module.exports = app => {
         }
 
         * signup(user) {
-            console.log('a')
             if (dateUtils.isToday(user.lastSignup)) {
-                return 0;
+                throw new Error(this.ctx.__('dashboard.index.signup.errors.signed'));
             }
             if (!app.config.signup.enable) {
                 return 0;
@@ -63,12 +62,15 @@ module.exports = app => {
             ) + app.config.signup.min;
 
             traffic *= this.ctx.utils.flow.type.MB;
-            console.log(traffic)
             const docment = yield this.ctx.model.User.findOne({ _id: user._id });
+
+            docment.lastSignup = new Date();
+            yield docment.save();
 
             yield this.ctx.service.produce.addTrafficTo(
                 docment.initProduce, traffic
             );
+
             return traffic;
         }
     }

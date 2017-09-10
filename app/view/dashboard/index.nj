@@ -34,12 +34,12 @@
 								type: "doughnut",
 								showInLegend: true,
 								dataPoints: [{
-									y: {{ traffic.total - traffic.used }},
-									legendText: "{{ __('dashboard.index.traffic.chart.remain') }} {{ ctx.utils.math.round((traffic.total - traffic.used) / traffic.total * 100) }} %",
+									y: {{ (traffic.total - traffic.used) / traffic.total * 100 }},
+									legendText: "{{ __('dashboard.index.traffic.chart.remain') }} {{ ctx.utils.math.round((traffic.total - traffic.used) / traffic.total * 100) }} % {{ ctx.utils.flow.flowAutoShow(traffic.total - traffic.used) }}",
 									indexLabel: "{{ ctx.utils.math.round((traffic.total - traffic.used) / traffic.total * 100) }} %"
 								}, {
-									y: {{ traffic.used }},
-									legendText: "{{ __('dashboard.index.traffic.chart.used') }} {{ ctx.utils.math.round(traffic.used / traffic.total * 100) }} %",
+									y: {{ traffic.used / traffic.total * 100 }},
+									legendText: "{{ __('dashboard.index.traffic.chart.used') }} {{ ctx.utils.math.round(traffic.used / traffic.total * 100) }} % {{ ctx.utils.flow.flowAutoShow(traffic.used) }}",
 									indexLabel: "{{ ctx.utils.math.round(traffic.used / traffic.total * 100) }} %"
 								}]
 							}]
@@ -63,13 +63,16 @@
 		
 				<div class="card-header">
 					<div class="card-title h5">{{ __('dashboard.index.signup.name') }}</div>
-					<div class="card-subtitle text-gray">Get free traffic everyday</div>
+					<div class="card-subtitle text-gray">{{ __('dashboard.index.signup.desc') }}</div>
 				</div>
 				<div class="card-body">
-					Empower every person and every organization on the planet to achieve more.
+					<div id="signup-message" class="toast message-hide">
+                	
+                	</div>
+					{{ __('dashboard.index.signup.content') }}
 				</div>
 				<div class="card-footer">
-					<button id="signup-button" class="btn btn-primary">Do</button>
+					<button id="signup-button" class="btn btn-primary">{{ __('dashboard.index.signup.do') }}</button>
 				</div>
 			</div>
 		</div>
@@ -79,6 +82,11 @@
 
 {% block script %}
 	<script>
+		$(function() {
+			if ({{ ctx.utils.date.isToday(ctx.user.lastSignup) }}) {
+				$("#signup-button").addClass("disabled");
+			}
+		})
 		$("#signup-button").click(function() {
 			const req = $.ajax({
 				url: "/dashboard/index/signup",
@@ -86,9 +94,22 @@
 				dataType: "json"
 			})
 
+			const elem = $("#signup-message")
+
 			req.done(function(message) {
-				console.log(message)
+				elem.removeClass("message-hide")
+					.addClass("toast-primary")
+					.html("{{ __('dashboard.index.signup.success') }}" + message.traffic)
+				$("#signup-button").addClass("disabled");
 			})
+
+			req.fail(function(xhr, textStatus, error) {
+				console.log(xhr.responseText)
+				elem.removeClass("message-hide")
+					.html(JSON.parse(xhr.responseText).error)
+
+				$("#signup-button").addClass("disabled");
+			})	
 		})
 	</script>
 {% endblock %}

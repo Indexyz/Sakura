@@ -14,6 +14,8 @@ module.exports.flowAutoShow = (value = 0) => {
         return round(value / TB) + ' TB';
     } else if (value > GB) {
         return round(value / GB) + ' GB';
+    } else if (value > MB) {
+        return round(value / MB) + ' MB';
     } else if (value > KB) {
         return round(value / KB) + ' KB';
     }
