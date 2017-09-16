@@ -7,13 +7,13 @@
 				<ul class="menu">
 					<li class="divider" data-content="{{ __('dashboard.user.name') }}"></li>
 					<li class="menu-item">
-						<a class="active" href="#">
+						<a {% if ctx.path == "/dashboard" %} class="active" {% endif %} href="/dashboard">
 							<i class="icon icon-apps"></i> {{ __('dashboard.user.index') }}
 						</a>
 						<a href="#">
 							<i class="material-icons icon icon-in-material">visibility</i> {{ __('dashboard.user.history') }}
 						</a>
-						<a href="#">
+						<a {% if ctx.path == "/dashboard/invite" %} class="active" {% endif %} href="/dashboard/invite">
 							<i class="material-icons icon icon-in-material">person_add</i> {{ __('dashboard.user.invite') }}
 						</a>
 						<a href="#">

@@ -1,12 +1,11 @@
 {% extends "./base.nj" %}
 
-
 {% block dashboard %}
 <div class="container">
 	<div class="columns">
 		<div class="column col-6 col-md-12">
 			<div class="card">
-		
+
 				<div class="card-header">
 					<div class="card-title h5">{{ __('dashboard.index.traffic.name') }}</div>
 					<div class="card-subtitle text-gray">{{ __('dashboard.index.traffic.desc') }}</div>
@@ -60,14 +59,14 @@
 		</div>
 		<div class="column col-6 col-md-12">
 			<div class="card">
-		
+
 				<div class="card-header">
 					<div class="card-title h5">{{ __('dashboard.index.signup.name') }}</div>
 					<div class="card-subtitle text-gray">{{ __('dashboard.index.signup.desc') }}</div>
 				</div>
 				<div class="card-body">
 					<div id="signup-message" class="toast message-hide">
-                	
+
                 	</div>
 					{{ __('dashboard.index.signup.content') }}
 				</div>
@@ -109,7 +108,7 @@
 					.html(JSON.parse(xhr.responseText).error)
 
 				$("#signup-button").addClass("disabled");
-			})	
+			})
 		})
 	</script>
 {% endblock %}

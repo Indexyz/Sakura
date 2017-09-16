@@ -1,0 +1,30 @@
+{% extends "./base.nj" %}
+
+{% block dashboard %}
+	<div class="container">
+		<div class="card">
+			<div class="card-header">
+				<div class="card-title h5">{{ __('dashboard.invite.gen.header') }}</div>
+				<div class="card-subtitle text-gray">{{ __('dashboard.invite.gen.desc') }}</div>
+			</div>
+			<div class="card-body" id="invite-content">
+				<p>{{ __('dashboard.invite.gen.content.1') }}</p>
+				<p>{{ __('dashboard.invite.gen.content.2') + ctx.user.inviteNumber }}</p>
+				<p>{{ __('dashboard.invite.gen.content.3') }}</p>
+			</div>
+			<div class="card-footer">
+				<button class="btn btn-primary">
+					{{ __('dashboard.invite.gen.button') }}
+				</button>
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-header">
+				<div class="card-title h5">{{ __('dashboard.invite.had.header') }}</div>
+			</div>
+			<div class="card-body">
+				
+			</div>
+		</div>
+	</div>
+{% endblock %}
