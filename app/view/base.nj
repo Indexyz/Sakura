@@ -16,6 +16,7 @@
 		{% block body %}{% endblock %}
         <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
         <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <script src="//momentjs.cn/downloads/moment.min.js"></script>
         {% block script %}{% endblock %}
 	</body>
 </html>

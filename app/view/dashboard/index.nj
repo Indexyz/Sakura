@@ -69,6 +69,7 @@
 
                 	</div>
 					{{ __('dashboard.index.signup.content') }}
+                    <p>{{ __('dashboard.index.signup.beforeLast') }} <code id="date-signup"></code></p>
 				</div>
 				<div class="card-footer">
 					<button id="signup-button" class="btn btn-primary">{{ __('dashboard.index.signup.do') }}</button>
@@ -85,6 +86,12 @@
 			if ({{ ctx.utils.date.isToday(ctx.user.lastSignup) }}) {
 				$("#signup-button").addClass("disabled");
 			}
+            const lastSignup = {{ ctx.user.lastSignup.getTime() }}
+            if (lastSignup !== "") {
+                $("#date-signup").html(moment(new Date(lastSignup)).fromNow())
+            } else {
+                $("#date-signup").html("{{ __('dashboard.index.signup.notSigned') }}")
+            }
 		})
 		$("#signup-button").click(function() {
 			const req = $.ajax({

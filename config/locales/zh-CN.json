@@ -81,7 +81,9 @@
                 "success": "签到成功, 获取了: ",
                 "errors": {
                     "signed": "已签到 无法再次签到"
-                }
+                },
+                "notSigned": "您尚未签到",
+                "beforeLast": "上一次签到时间: "
             }
         },
         "invite": {
