@@ -9,6 +9,10 @@ module.exports = app => {
                 owner: user === null ? null : user._id,
                 code: codeUUID,
             });
+            if (user !== null) {
+                user.inviteNumber -= 1;
+            }
+            yield user.save();
             yield code.save();
             return code;
         }
@@ -19,6 +23,14 @@ module.exports = app => {
                 owner: null,
             });
         }
+
+        * getUserCode(user) {
+            return yield this.ctx.model.InviteCode.find({
+                used: false,
+                owner: user._id,
+            });
+        }
+
     }
     return InviteCode;
 };

@@ -86,7 +86,11 @@
 			if ({{ ctx.utils.date.isToday(ctx.user.lastSignup) }}) {
 				$("#signup-button").addClass("disabled");
 			}
-            const lastSignup = {{ ctx.user.lastSignup.getTime() }}
+            {% if ctx.user.lastSignup %}
+                const lastSignup = {{ ctx.user.lastSignup.getTime() }}
+            {% else %}
+                const lastSignup = ""
+            {% endif %}
             if (lastSignup !== "") {
                 $("#date-signup").html(moment(new Date(lastSignup)).fromNow())
             } else {

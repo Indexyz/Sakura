@@ -51,9 +51,10 @@ module.exports = app => {
         }
 
         * signup(user) {
-            if (dateUtils.isToday(user.lastSignup)) {
+            if (dateUtils.isToday(new Date(user.lastSignup))) {
                 throw new Error(this.ctx.__('dashboard.index.signup.errors.signed'));
             }
+
             if (!app.config.signup.enable) {
                 return 0;
             }

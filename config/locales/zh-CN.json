@@ -99,7 +99,11 @@
             },
             "had": {
                 "header": "已有的邀请码"
-            }
+            },
+            "errors": {
+                "noCodeHave": "没有有效的邀请码"
+            },
+            "generatorDone": "已经成功的生成了邀请码"
         }
     }
 }

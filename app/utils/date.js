@@ -5,13 +5,14 @@ function getDay(date) {
 }
 
 function isToday(date) {
-    if (date === null || typeof date !== Date) {
+    if (date === null) {
         return false;
     }
 
-    if (getDay(date) === getDay(new Date())) {
+    if (getDay(new Date(date)) === getDay(new Date())) {
         return true;
     }
+
     return false;
 }
 

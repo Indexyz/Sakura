@@ -8,12 +8,15 @@
 				<div class="card-subtitle text-gray">{{ __('dashboard.invite.gen.desc') }}</div>
 			</div>
 			<div class="card-body" id="invite-content">
+                <div id="generator-message" class="toast message-hide" style="margin-bottom: 8px;">
+
+                </div>
 				<p>{{ __('dashboard.invite.gen.content.1') }}</p>
 				<p>{{ __('dashboard.invite.gen.content.2') + ctx.user.inviteNumber }}</p>
 				<p>{{ __('dashboard.invite.gen.content.3') }}</p>
 			</div>
 			<div class="card-footer">
-				<button class="btn btn-primary">
+				<button class="btn btn-primary" id="getCode">
 					{{ __('dashboard.invite.gen.button') }}
 				</button>
 			</div>
@@ -23,8 +26,74 @@
 				<div class="card-title h5">{{ __('dashboard.invite.had.header') }}</div>
 			</div>
 			<div class="card-body">
-				
+				<table id="code-tabel" class="display" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <td>{{ __('auth.codes.name') }}</td>
+                            <td>{{ __('useful.link') }}</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for code in codes %}
+                        <tr>
+                            <td>{{ code.code }}</td>
+                            <td><a href="/auth/register?code={{ code.code }}">{{ __('useful.link') }}</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
 			</div>
 		</div>
 	</div>
+{% endblock %}
+
+{% block script %}
+	<script>
+		$(function() {
+			$("#code-tabel").DataTable({
+				"searching": false
+			})
+		})
+        $("#getCode").click(function() {
+            const elem = $("#generator-message");
+            const userCodeNumber = {{ ctx.user.inviteNumber }};
+            if (userCodeNumber <= 0) {
+                elem.removeClass("message-hide")
+                    .html("{{ __('dashboard.invite.errors.noCodeHave') }}");
+                return
+            }
+
+            $("#getCode").addClass("disabled")
+
+            const req = $.ajax({
+				url: "/dashboard/invite/create",
+				method: "POST",
+				data: {
+					number: userCodeNumber,
+                    "_csrf": "{{ ctx.csrf }}"
+				},
+				dataType: "json"
+			})
+
+            req.done(function(message) {
+				elem.removeClass("message-hide")
+				elem.addClass("toast-primary")
+						.html("{{ __('dashboard.invite.generatorDone') }}")
+
+                console.log(message)
+
+				setTimeout(function() {
+					window.location.href = "/dashboard/invite"
+				}, 1000)
+				$("#getCode").removeClass("disabled")
+			})
+
+			req.fail(function(xhr, textStatus, error) {
+				elem.removeClass("message-hide")
+				elem.html(JSON.parse(xhr.responseText).error)
+				$("#getCode").removeClass("disabled")
+			})
+
+        })
+	</script>
 {% endblock %}
