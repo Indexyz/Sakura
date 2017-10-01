@@ -30,14 +30,14 @@
                     <thead>
                         <tr>
                             <td>{{ __('auth.codes.name') }}</td>
-                            <td>{{ __('useful.link') }}</td>
+                            <td class="hide-md">{{ __('useful.link') }}</td>
                         </tr>
                     </thead>
                     <tbody>
                         {% for code in codes %}
                         <tr>
                             <td>{{ code.code }}</td>
-                            <td><a href="/auth/register?code={{ code.code }}">{{ __('useful.link') }}</a></td>
+                            <td class="hide-md"><a href="/auth/register?code={{ code.code }}">{{ __('useful.link') }}</a></td>
                         </tr>
                         {% endfor %}
                     </tbody>

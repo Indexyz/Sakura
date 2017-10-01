@@ -6,7 +6,7 @@
     background-color: #eff1fa;
     position:fixed;
     width: 100%;
-    z-index: 3;
+    z-index: 101;
 }
 
 #section-image {
@@ -80,5 +80,6 @@
 }
 
 #invite-content > p {
-    line-height: 0.5rem;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
