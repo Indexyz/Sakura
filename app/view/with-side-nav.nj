@@ -1,0 +1,45 @@
+{% extends "./navbar.nj" %}
+
+{% block content %}
+	<div class="container content-with-nav">
+        <!-- Mobile Navbar -->
+        <div class="show-md">
+
+			<div id="sidebar" class="s-sidebar">
+		        <div class="s-brand">
+					<a href="/" class="s-title">
+						<h2>Sakura</h2>
+					</a>
+		        </div>
+		        <div class="s-nav">
+					<div class="accordion-container">
+						<div class="accordion">
+
+                            <label class="accordion-header c-hand" for="docs-accordion-1">
+                                {{ __('dashboard.user.name') }}
+                            </label>
+                            {% block phoneNav %}{% endblock %}
+                        </div>
+					</div>
+		        </div>
+      		</div>
+      		<a href="#sidebar-close" id="sidebar-close" class="docs-nav-clear"></a>
+        </div>
+		<div class="columns">
+			<div class="column col-3 hide-md" style="padding-top: 3vh;">
+				{% block nav %}{% endblock %}
+			</div>
+			<div class="column col-9 col-md-12">
+				<div id="nav-with-breadcrumb">
+	                <a href="#sidebar" id="show-nav" class="show-md btn btn-link btn-action">
+	                	<i class="icon icon-menu"></i>
+	                </a>
+	      			{% block breadcrumb %}
+	      			{% endblock %}
+				</div>
+				{% block dashboard %}
+        		{% endblock %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

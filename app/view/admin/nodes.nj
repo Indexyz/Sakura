@@ -1,0 +1,62 @@
+{% extends "./base.nj" %}
+
+{% block breadcrumb %}
+	<ul class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/admin">{{ __('breadcrumb.admin') }}</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="/admin/nodes">{{ __('breadcrumb.nodes') }}</a>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block dashboard %}
+	<div class="container">
+		{% if message %}
+			<div id="message" class="toast toast-primary"> 
+				{{ message }}
+        	</div> 
+        	<br>
+		{% endif %}
+		{% if error %}
+			<div id="message" class="toast"> 
+				{{ error }}
+        	</div> 
+        	<br>
+		{% endif %}
+		<div class="columns">
+			<div id="node-tiles" class="column col-8 col-md-12">
+				{% for node in nodes %}
+	                <div class="tile">
+				        <div class="tile-content">
+					        <p class="tile-title">{{ node.name }}</p>
+					        <p class="tile-subtitle text-gray hide-sm">
+					        {{ node.address }} | {{ ctx.utils.enum.NodeEnum[node.kid] }} 
+							{% if node.detail %}
+								| {{ node.detail }}
+							{% endif %}
+					        </p>
+				        </div>
+				        <div class="tile-action">
+				        	<a class="btn btn-primary">Edit</a>
+				        	<a href="/admin/nodes/delete/{{ node._id }}" class="btn btn-warning">Delete</a>
+				        </div>
+			        </div>
+		        {% endfor %}
+			</div>
+			<div class="column col-4 col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title h5">{{ __("admin.nodes.create.name") }}</div>
+                            <div class="card-subtitle text-gray">{{ __("admin.nodes.create.desc") }}</div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="/admin/nodes/create" class="btn btn-link">{{ __("admin.nodes.create.create") }}</a>
+                        </div>
+                    </div>
+                </div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

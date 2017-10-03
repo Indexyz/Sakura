@@ -21,6 +21,11 @@
                             <li class="menu-item">
                                 <a href="/dashboard">{{ __('navbar.dashboard') }}</a>
                             </li>
+                            {% if ctx.user.isAdmin %}
+                                <li class="menu-item">
+                                    <a href="/admin">{{ __('navbar.admin') }}</a>
+                                </li>
+                            {% endif %}
                             <li class="menu-item">
                                 <a href="/auth/logout">{{ __('navbar.logout') }}</a>
                             </li>

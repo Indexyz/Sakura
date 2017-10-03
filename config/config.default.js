@@ -47,6 +47,9 @@ module.exports = appInfo => {
             max: 128,
             min: 32,
         },
+        shadowsocks: {
+            method: 'rc4-md5',
+        },
     });
 
     return config;

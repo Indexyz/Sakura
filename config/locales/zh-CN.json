@@ -9,7 +9,8 @@
         "register": "注册",
         "code": "邀请码",
         "dashboard": "用户中心",
-        "logout": "登出"
+        "logout": "登出",
+        "admin": "管理员面板"
     },
     "auth": {
         "login": {
@@ -105,5 +106,46 @@
             },
             "generatorDone": "已经成功的生成了邀请码"
         }
+    },
+    "breadcrumb": {
+        "dashboard": "用户中心",
+        "index": "首页",
+        "invite": "邀请",
+        "admin": "管理员面板",
+        "nodes": "节点",
+        "createNode": "创建节点"
+    },
+    "admin": {
+        "detail": {
+            "index": "详情"
+        },
+        "index": {
+            "name": "首页"
+        },
+        "nodes": {
+            "name": "节点",
+            "create": {
+                "name": "创建一个节点",
+                "desc": "在这里创建以供连入",
+                "create": "点击这里开始",
+                "form": {
+                    "name": "节点名称",
+                    "address": "节点地址",
+                    "rate": "流量比例",
+                    "enable": "是否启用",
+                    "level": "节点等级 (0级都可用 请填入数字)",
+                    "type": "节点类型",
+                    "detail": "详细信息"
+                },
+                "success": "成功创建节点"
+            },
+            "delete": {
+                "success": "删除节点成功"
+            }
+        }
+    },
+    "static": {
+        "more": "更多",
+        "submit": "提交"
     }
 }

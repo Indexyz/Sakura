@@ -1,0 +1,35 @@
+{% extends "../with-side-nav.nj" %}
+
+{% block phoneNav %}
+<ul class="menu menu-nav">
+    <li class="menu-item">
+        <a {% if ctx.path == "/dashboard" %} class="active" {% endif %} href="/dashboard">
+            <i class="icon icon-apps"></i> {{ __('dashboard.user.index') }}
+        </a>
+        <a href="#">
+            <i class="material-icons icon icon-in-material">visibility</i> {{ __('dashboard.user.history') }}
+        </a>
+        <a {% if ctx.path == "/dashboard/invite" %} class="active" {% endif %} href="/dashboard/invite">
+            <i class="material-icons icon icon-in-material">person_add</i> {{ __('dashboard.user.invite') }}
+        </a>
+        <a href="#">
+            <i class="material-icons icon icon-in-material">settings </i> {{ __('dashboard.user.setting') }}
+        </a>
+    </li>
+</ul>
+{% endblock %}
+
+
+{% block nav %}
+<ul class="menu">
+    <li class="divider" data-content="{{ __('admin.detail.index') }}"></li>
+    <li class="menu-item">
+        <a {% if ctx.path == "/admin" %} class="active" {% endif %} href="/admin">
+            <i class="icon icon-apps"></i> {{ __('admin.index.name') }}
+        </a>
+        <a {% if ctx.path == "/admin/nodes" %} class="active" {% endif %} href="/admin/nodes">
+            <i class="material-icons icon icon-in-material">storage</i> {{ __('admin.nodes.name') }}
+        </a>
+    </li>
+</ul>
+{% endblock %}

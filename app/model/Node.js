@@ -6,9 +6,11 @@ module.exports = app => {
         name: { type: String, required: true, unique: true },
         kid: { type: Number, required: true, default: 0 },
         address: { type: String, required: true },
-        port: Number,
         isSignalPort: { type: Boolean, defalut: false },
         rate: { type: Number, required: true, default: 1 },
+        level: { type: Number, default: 0 },
+        enable: { type: Boolean, default: true },
+        detail: String,
     });
 
     return mongoose.model('Nodes', nodeSchema);

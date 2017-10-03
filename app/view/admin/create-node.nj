@@ -1,0 +1,105 @@
+{% extends "./base.nj" %}
+
+{% block breadcrumb %}
+	<ul class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/admin">{{ __('breadcrumb.admin') }}</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="/admin/nodes">{{ __('breadcrumb.nodes') }}</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="/admin/nodes/create">{{ __('breadcrumb.createNode') }}</a>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block dashboard %}
+    <div class="container">    
+        <h2>{{ __("admin.nodes.create.name") }}</h2>
+        <div id="message" class="toast message-hide">
+        </div>  
+        <div class="form-group">
+            <label class="form-label" for="node-name">{{ __("admin.nodes.create.form.name") }}</label>
+            <input class="form-input" type="text" id="node-name" placeholder="{{ __("admin.nodes.create.form.name") }}">
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="node-address">{{ __("admin.nodes.create.form.address") }}</label>
+            <input class="form-input" type="text" id="node-address" placeholder="{{ __("admin.nodes.create.form.address") }}">
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="traffic-rate">{{ __("admin.nodes.create.form.rate") }}</label>
+            <input class="form-input" type="text" id="traffic-rate" placeholder="{{ __("admin.nodes.create.form.rate") }}" value="1">
+        </div>
+        <div class="divider text-center" data-content="{{ __("static.more") }}"></div>
+
+        <div class="form-group">
+            <label class="form-switch">
+                <input id="enable-node" type="checkbox" checked>
+                <i class="form-icon"></i> {{ __("admin.nodes.create.form.enable") }}
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="node-level">{{ __("admin.nodes.create.form.level") }}</label>
+            <input class="form-input" type="text" id="node-level" placeholder="{{ __("admin.nodes.create.form.level") }}" value="0">
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="node-detail">{{ __("admin.nodes.create.form.detail") }}</label>
+            <input class="form-input" type="text" id="node-detail" placeholder="{{ __("admin.nodes.create.form.detail") }}">
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="node-level">{{ __("admin.nodes.create.form.type") }}</label>
+            <select id="node-type" class="form-select">
+                <option value="0">Shadowsocks</option>
+                <option value="1">Anyconnect</option>
+            </select>
+        </div>
+        <br>
+        <button id="submit-btn" class="btn btn-block btn-primary">{{ __("static.submit") }}</button>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $("#submit-btn").click(function() {
+            const elem = $("#message");
+
+            const btn = $("#submit-btn");
+
+            btn.addClass("disabled");
+            const req = $.ajax({
+                url: "/admin/nodes/create",
+                method: "POST",
+                data: {
+                    name: $("#node-name").val(),
+                    address: $("#node-address").val(),
+                    rate: $("#traffic-rate").val(),
+                    enable: $("#enable-node").is(':checked'),
+                    level: $("#node-level").val(),
+                    kid: $("#node-type").val(),
+                    detail: $("#node-detail").val(),
+                    "_csrf": "{{ ctx.csrf }}"
+                },
+                dataType: "json"
+            })
+
+            req.done(function(message) {
+                elem.removeClass("message-hide")
+                elem.addClass("toast-primary")
+                        .html('{{ __("admin.nodes.create.success") }}')
+
+                setTimeout(function() {
+                    window.location.href = "/admin/nodes"
+                }, 1000)
+                btn.removeClass("disabled")
+            })
+
+            req.fail(function(xhr, textStatus, error) {
+                elem.removeClass("message-hide")
+                elem.html(JSON.parse(xhr.responseText).error)
+                btn.removeClass("disabled")
+            })
+        })
+    </script>
+{% endblock %}

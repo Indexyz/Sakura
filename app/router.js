@@ -5,4 +5,5 @@ module.exports = app => {
 
     require('./router/auth')(app);
     require('./router/dashboard')(app);
+    require('./router/admin')(app);
 };

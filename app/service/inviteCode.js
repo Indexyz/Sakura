@@ -11,8 +11,8 @@ module.exports = app => {
             });
             if (user !== null) {
                 user.inviteNumber -= 1;
+                yield user.save();
             }
-            yield user.save();
             yield code.save();
             return code;
         }

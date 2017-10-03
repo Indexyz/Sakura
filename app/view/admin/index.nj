@@ -1,0 +1,16 @@
+{% extends "./base.nj" %}
+
+{% block breadcrumb %}
+	<ul class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/admin">{{ __('breadcrumb.admin') }}</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="/admin">{{ __('breadcrumb.index') }}</a>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block dashboard %}
+
+{% endblock %}
