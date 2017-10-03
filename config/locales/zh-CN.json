@@ -32,7 +32,8 @@
             "passwordCharNotEnough": "密码长度太小 请输入至少 6 个字符",
             "usernameCharNotEnough": "用户名长度太小 请输入至少 4 个字符",
             "codeIsEmpty": "请输入邀请码",
-            "notFoundUser": "未找到用户"
+            "notFoundUser": "未找到用户",
+            "tokenError": "验证码Token错误 请刷新页面重试"
         },
         "codes": {
             "name": "邀请码",

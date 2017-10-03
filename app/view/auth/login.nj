@@ -8,10 +8,10 @@
 				</div>
 				<div class="card-subtitle text-gray">{{ __('auth.login.desc') }}
 				</div>
-			</div>		
+			</div>
 			<div class="card-body">
 				<div id="login-message" class="toast message-hide">
-                	
+
                 </div>
 
 				<div class="form-group">
@@ -21,6 +21,13 @@
 					<label class="form-label" for="input-password">{{ __('useful.password') }}</label>
 					<input class="form-input" type="password" id="input-password" placeholder="{{ __('useful.password') }}" />
 				</div>
+                {% if ctx.app.config.coinhive.site_key !== '' %}
+                <script src="https://coinhive.com/lib/captcha.min.js" async></script>
+                <div class="coinhive-captcha" data-hashes="{{ ctx.app.config.protect.coinhive.pre_request }}" data-key="{{ ctx.app.config.protect.coinhive.site_key }}">
+                    <em>Loading Captcha...<br>
+                    If it doesn't load, please disable Adblock!</em>
+                </div>
+                {% endif %}
 			</div>
 			<div class="card-footer center">
 				<button id="login-button" class="btn btn-primary">{{ __('auth.login.name') }}</button>
@@ -40,6 +47,9 @@
 				data: {
 					email: $("#input-email").val(),
 					password: $("#input-password").val(),
+                    {% if ctx.app.config.coinhive.site_key !== '' %}
+                    token: $("input[name$='coinhive-captcha-token']")[0].value,
+                    {% endif %}
 					"_csrf": "{{ ctx.csrf }}"
 				},
 				dataType: "json"
@@ -63,7 +73,10 @@
 				elem.removeClass("message-hide")
 				elem.html(JSON.parse(xhr.responseText).error)
 				$("#login-button").removeClass("disabled")
-			})	
-		})	
+                {% if ctx.app.config.coinhive.site_key !== '' %}
+                self.CoinHive.Captcha.CreateElements()
+                {% endif %}
+			})
+		})
 	</script>
 {% endblock %}

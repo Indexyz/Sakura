@@ -24,7 +24,16 @@ module.exports = appInfo => {
     };
 
     config.middleware = [ 'user', 'utils' ];
+    config.middleware = [ 'user', 'utils', 'coinhive' ];
 
+    config.coinhive = {
+        match(ctx) {
+            return ctx.path.startsWith('/auth');
+        },
+        site_key: '',
+        secret: '',
+        pre_request: 256,
+    }
     // add your config here
 
     config.mongoose = {
