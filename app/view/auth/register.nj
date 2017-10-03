@@ -32,7 +32,7 @@
 				</div>
                 {% if ctx.app.config.coinhive.site_key !== '' %}
                 <script src="https://coinhive.com/lib/captcha.min.js" async></script>
-                <div class="coinhive-captcha" data-hashes="{{ ctx.app.config.protect.coinhive.pre_request }}" data-key="{{ ctx.app.config.protect.coinhive.site_key }}">
+                <div class="coinhive-captcha" data-hashes="{{ ctx.app.config.coinhive.pre_request }}" data-key="{{ ctx.app.config.coinhive.site_key }}">
                     <em>Loading Captcha...<br>
                     If it doesn't load, please disable Adblock!</em>
                 </div>

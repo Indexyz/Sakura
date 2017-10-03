@@ -6,8 +6,8 @@ module.exports = app => {
     class Coinhive extends app.Service {
         * verify(token) {
             const form = new FormData();
-            form.append('secret', app.config.protect.coinhive.secret);
-            form.append('hashes', app.config.protect.coinhive.pre_request);
+            form.append('secret', app.config.coinhive.secret);
+            form.append('hashes', app.config.coinhive.pre_request);
             form.append('token', token);
 
             const req = r2.post('https://api.coinhive.com/token/verify', {
