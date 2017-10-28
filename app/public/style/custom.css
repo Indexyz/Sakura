@@ -247,3 +247,12 @@
 .address-tile > i {
     padding-right: 8px;
 }
+
+#node-details-display > p {
+    margin-bottom: 0px;
+}
+
+#link-qrcode-box {
+    width: 100%;
+    text-align: center;
+}

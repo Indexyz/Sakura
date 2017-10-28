@@ -106,6 +106,19 @@
                 "noCodeHave": "没有有效的邀请码"
             },
             "generatorDone": "已经成功的生成了邀请码"
+        },
+        "nodes": {
+            "tooltip": {
+                "more": "节点详情"
+            },
+            "details": {
+                "type": "节点类型",
+                "address": "节点地址",
+                "port": "节点端口",
+                "method": "加密方式",
+                "password": "链接密码",
+                "quickLink": "快速链接"
+            }
         }
     },
     "breadcrumb": {

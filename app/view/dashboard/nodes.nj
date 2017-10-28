@@ -1,0 +1,50 @@
+{% extends "./base.nj" %}
+
+
+{% block breadcrumb %}
+	<ul class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/dashboard">{{ __('breadcrumb.dashboard') }}</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="/dashboard/nodes">{{ __('breadcrumb.nodes') }}</a>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block dashboard %}
+    <div class="container">
+        {% for node in nodes %}
+            <div class="card">
+                <div class="card-body">
+                    <div class="tile tile-centered">
+                        <div class="tile-icon">
+                            {% if node.state == 1 %}
+                                <i class="material-icons">offline_pin</i>
+                            {% else %}
+                                <i class="material-icons">error</i>
+                            {% endif %}
+                        </div>
+                        <div class="tile-content">
+                            <div class="tile-title">{{ node.name }}</div>
+                            <div class="tile-subtitle text-gray">
+                            {% if node.detail %}{{ node.detail + " · " }}{% endif %}{{ node.address }}</div>
+                            
+                        </div>
+                        <div class="tile-action tooltip tooltip-bottom" data-tooltip="{{ __('dashboard.nodes.tooltip.more') }}">
+                            <a href="/dashboard/nodes/{{ node._id }}" class="btn btn-link">
+                                <i class="icon icon-arrow-down"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block script %}
+	<script>
+
+	</script>
+{% endblock %}

@@ -10,6 +10,7 @@ module.exports = app => {
         rate: { type: Number, required: true, default: 1 },
         level: { type: Number, default: 0 },
         enable: { type: Boolean, default: true },
+        state: { type: Number, default: 0, required: true },
         detail: String,
     });
 

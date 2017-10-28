@@ -2,7 +2,7 @@
 
 
 module.exports = app => {
-    class InviteCode extends app.Service {
+    class Node extends app.Service {
         * create(name, address, rate, enable, level, kid, detail) {
             const node = new this.ctx.model.Node({
                 name,
@@ -24,7 +24,16 @@ module.exports = app => {
         * get(id) {
             return yield this.ctx.model.Node.findById(id);
         }
+
+        * getUserNode(user) {
+            return yield this.ctx.model.Node.find({
+                enable: true,
+                level: {
+                    $lte: user.level,
+                },
+            });
+        }
     }
 
-    return InviteCode;
+    return Node;
 };
