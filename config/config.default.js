@@ -23,9 +23,6 @@ module.exports = appInfo => {
         defaultExtension: '.nj',
     };
 
-    config.middleware = [ 'user', 'utils' ];
-    config.middleware = [ 'user', 'utils', 'coinhive' ];
-
     config.middleware = [ 'user', 'utils', 'coinhive', 'error' ];
     config.coinhive = {
         match(ctx) {
