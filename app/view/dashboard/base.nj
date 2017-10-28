@@ -40,7 +40,7 @@
 
     <li class="divider" data-content="{{ __('dashboard.link.name') }}"></li>
     <li class="menu-item">
-        <a href="#">
+        <a {% if ctx.path == "/dashboard/nodes" %} class="active" {% endif %} href="/dashboard/nodes">
             <i class="material-icons icon icon-in-material">dns</i> {{ __('dashboard.link.nodes') }}
         </a>
         <a href="#">

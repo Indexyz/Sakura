@@ -20,6 +20,10 @@ module.exports = app => {
         * delete(id) {
             yield this.ctx.model.Node.findByIdAndRemove(id);
         }
+
+        * get(id) {
+            return yield this.ctx.model.Node.findById(id);
+        }
     }
 
     return InviteCode;

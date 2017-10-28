@@ -239,25 +239,11 @@
     }
 }
 
-#node-tiles .tile:first-child {
-    padding-top: 0px;
+.address-tile {
+    margin-bottom: 0px;
+    display: inline-flex;
 }
 
-#node-tiles .tile {
-    border-bottom: 1px #ccc solid;
-    padding-top: 8px;
-}
-
-#node-tiles .tile:last-child {
-    border-bottom: none;
-}
-
-@media (max-width: 599px) {
-    #node-tiles .tile {
-        padding-top: 10px;
-        padding-bottom: 6px;
-    }
-    #node-tiles .tile:last-child {
-        padding-bottom: 24px;
-    }
+.address-tile > i {
+    padding-right: 8px;
 }

@@ -28,20 +28,36 @@
 		<div class="columns">
 			<div id="node-tiles" class="column col-8 col-md-12">
 				{% for node in nodes %}
-	                <div class="tile">
-				        <div class="tile-content">
-					        <p class="tile-title">{{ node.name }}</p>
-					        <p class="tile-subtitle text-gray hide-sm">
-					        {{ node.address }} | {{ ctx.utils.enum.NodeEnum[node.kid] }} 
-							{% if node.detail %}
-								| {{ node.detail }}
-							{% endif %}
-					        </p>
+					<div class="card">
+						<div class="card-body">
+			                <div class="tile">
+						        <div class="tile-content">
+							        <p class="tile-title">{{ node.name }}</p>
+
+							        {% if node.detail %}
+								        <p class="tile-subtitle text-gray hide-sm">
+											{{ node.detail }}
+								        </p>
+									{% endif %}
+
+							        <p class="tile-title address-tile">
+					        			<i class="material-icons">toll</i> 
+					        			<span>{{ node.address }}</span>
+					        			<!-- <p>{{ node.address }}</p> -->
+									</p>
+									
+						        </div>
+						        <div class="tile-action">
+						        	<a href="/admin/nodes/edit/{{ node._id }}" class="btn btn-primary">{{ __("static.edit") }}</a>
+						        	<a href="/admin/nodes/delete/{{ node._id }}" class="btn btn-warning">{{ __("static.delete") }}</a>
+						        </div>
+					        </div>
 				        </div>
-				        <div class="tile-action">
-				        	<a class="btn btn-primary">Edit</a>
-				        	<a href="/admin/nodes/delete/{{ node._id }}" class="btn btn-warning">Delete</a>
-				        </div>
+				        <div class="card-footer">
+						    <span class="chip">
+						    	{{ ctx.utils.enum.NodeEnum[node.kid] }}
+							</span>
+						</div>	
 			        </div>
 		        {% endfor %}
 			</div>

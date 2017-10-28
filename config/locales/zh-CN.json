@@ -114,7 +114,8 @@
         "invite": "邀请",
         "admin": "管理员面板",
         "nodes": "节点",
-        "createNode": "创建节点"
+        "createNode": "创建节点",
+        "editNode": "编辑节点"
     },
     "admin": {
         "detail": {
@@ -142,11 +143,17 @@
             },
             "delete": {
                 "success": "删除节点成功"
+            },
+            "edit": {
+                "name": "编辑节点",
+                "success": "成功修改了节点"
             }
         }
     },
     "static": {
         "more": "更多",
-        "submit": "提交"
+        "submit": "提交",
+        "delete": "删除",
+        "edit": "编辑"
     }
 }

@@ -3,7 +3,6 @@
 module.exports = app => {
     class AdminNodeController extends app.Controller {
         * get(message, error) {
-            console.log(typeof message)
             if (typeof message !== 'string') {
                 message = undefined;
             }
@@ -32,6 +31,20 @@ module.exports = app => {
                 return yield this.get(undefined, e.message);
             }
             yield this.get(this.ctx.__('admin.nodes.delete.success'));
+        }
+        * editNodePage() {
+            const { id } = this.ctx.params;
+            const node = yield this.ctx.service.node.get(id);
+            yield this.ctx.render('admin/edit-node', { node });
+        }
+
+        * edit() {
+            const { id } = this.ctx.request.body;
+            const node = yield this.ctx.service.node.get(id);
+            Object.assign(node, this.ctx.request.body);
+            yield node.save();
+
+            this.ctx.body = node;
         }
     }
     return AdminNodeController;
