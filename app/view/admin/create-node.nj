@@ -15,10 +15,10 @@
 {% endblock %}
 
 {% block dashboard %}
-    <div class="container">    
+    <div class="container">
         <h2>{{ __("admin.nodes.create.name") }}</h2>
         <div id="message" class="toast message-hide">
-        </div>  
+        </div>
         <div class="form-group">
             <label class="form-label" for="node-name">{{ __("admin.nodes.create.form.name") }}</label>
             <input class="form-input" type="text" id="node-name" placeholder="{{ __("admin.nodes.create.form.name") }}">
@@ -77,7 +77,7 @@
                     rate: $("#traffic-rate").val(),
                     enable: $("#enable-node").is(':checked'),
                     level: $("#node-level").val(),
-                    kid: $("#node-type").val(),
+                    kind: $("#node-type").val(),
                     detail: $("#node-detail").val(),
                     "_csrf": "{{ ctx.csrf }}"
                 },

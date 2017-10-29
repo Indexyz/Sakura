@@ -14,9 +14,9 @@ module.exports = app => {
         }
 
         * create() {
-            const { name, address, rate, enable, level, kid, detail } = this.ctx.request.body;
+            const { name, address, rate, enable, level, kind, detail } = this.ctx.request.body;
             try {
-                const node = yield this.ctx.service.node.create(name, address, rate, enable, level, kid, detail);
+                const node = yield this.ctx.service.node.create(name, address, rate, enable, level, kind, detail);
                 this.ctx.body = node;
             } catch (e) {
                 this.ctx.status = 413;

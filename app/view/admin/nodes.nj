@@ -14,15 +14,15 @@
 {% block dashboard %}
 	<div class="container">
 		{% if message %}
-			<div id="message" class="toast toast-primary"> 
+			<div id="message" class="toast toast-primary">
 				{{ message }}
-        	</div> 
+        	</div>
         	<br>
 		{% endif %}
 		{% if error %}
-			<div id="message" class="toast"> 
+			<div id="message" class="toast">
 				{{ error }}
-        	</div> 
+        	</div>
         	<br>
 		{% endif %}
 		<div class="columns">
@@ -41,11 +41,11 @@
 									{% endif %}
 
 							        <p class="tile-title address-tile">
-					        			<i class="material-icons">toll</i> 
+					        			<i class="material-icons">toll</i>
 					        			<span>{{ node.address }}</span>
 					        			<!-- <p>{{ node.address }}</p> -->
 									</p>
-									
+
 						        </div>
 						        <div class="tile-action">
 						        	<a href="/admin/nodes/edit/{{ node._id }}" class="btn btn-primary">{{ __("static.edit") }}</a>
@@ -55,9 +55,9 @@
 				        </div>
 				        <div class="card-footer">
 						    <span class="chip">
-						    	{{ ctx.utils.enum.NodeEnum[node.kid] }}
+						    	{{ ctx.utils.enum.NodeEnum[node.kind] }}
 							</span>
-						</div>	
+						</div>
 			        </div>
 		        {% endfor %}
 			</div>

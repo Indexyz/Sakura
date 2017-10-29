@@ -23,27 +23,32 @@
                 <div class="divider text-center"></div>
                 <br>
                 <p>
-                    <span>{{ __('dashboard.nodes.details.type') }}: {{ ctx.utils.enum.NodeEnum[node.kid] }}</span>
+                    <span>{{ __('dashboard.nodes.details.type') }}: {{ ctx.utils.enum.NodeEnum[node.kind] }}</span>
                 </p>
                 <p>
                     <span>{{ __('dashboard.nodes.details.address') }}: {{ node.address }}</span>
                 </p>
-                <p>
-                    <span>{{ __('dashboard.nodes.details.port') }}: {{ ctx.user.port }}</span>
-                </p>
-                <p>
-                    <span>{{ __('dashboard.nodes.details.method') }}: {{ ctx.user.method }}</span>
-                </p>
+                {% if node.kind == 0 %}
+                    <p>
+                        <span>{{ __('dashboard.nodes.details.port') }}: {{ ctx.user.port }}</span>
+                    </p>
+                    <p>
+                        <span>{{ __('dashboard.nodes.details.method') }}: {{ ctx.user.method }}</span>
+                    </p>
+                {% endif %}
                 <p>
                     <span>{{ __('dashboard.nodes.details.password') }}: {{ ctx.user.linkPassword }}</span>
                 </p>
-                <div class="divider text-center" data-content="{{ __("static.more") }}"></div>
-                <p>
-                    <span>{{ __('dashboard.nodes.details.quickLink') }}: <a href="{{ ctx.utils.toolkit.getNodeLink(node, ctx.user) }}">{{ __('dashboard.nodes.details.quickLink') }}</a></span>
-                </p>
-                <div id="link-qrcode-box">
-                    <div id="link-qrcode"></div>
-                </div>
+                {% if node.kind == 0 %}
+                    <div class="divider text-center" data-content="{{ __("static.more") }}"></div>
+
+                    <p>
+                        <span>{{ __('dashboard.nodes.details.quickLink') }}: <a href="{{ ctx.utils.toolkit.getNodeLink(node, ctx.user) }}">{{ __('dashboard.nodes.details.quickLink') }}</a></span>
+                    </p>
+                    <div id="link-qrcode-box">
+                        <div id="link-qrcode"></div>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>

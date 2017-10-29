@@ -4,7 +4,7 @@ module.exports = app => {
 
     const nodeSchema = new mongoose.Schema({
         name: { type: String, required: true, unique: true },
-        kid: { type: Number, required: true, default: 0 },
+        kind: { type: Number, required: true, default: 0 },
         address: { type: String, required: true },
         isSignalPort: { type: Boolean, defalut: false },
         rate: { type: Number, required: true, default: 1 },

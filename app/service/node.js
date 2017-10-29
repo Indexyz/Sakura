@@ -3,7 +3,7 @@
 
 module.exports = app => {
     class Node extends app.Service {
-        * create(name, address, rate, enable, level, kid, detail) {
+        * create(name, address, rate, enable, level, kind, detail) {
             const node = new this.ctx.model.Node({
                 name,
                 address,
@@ -11,7 +11,7 @@ module.exports = app => {
                 enable,
                 level,
                 detail,
-                kid: Number(kid),
+                kind: Number(kind),
             });
             yield node.save();
             return node;

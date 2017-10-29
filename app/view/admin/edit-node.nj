@@ -64,7 +64,7 @@
     <script>
         // Set select type
         $(function() {
-            $("#node-type").find("option[value={{node.kid}}]").attr("selected", true)
+            $("#node-type").find("option[value={{node.kind}}]").attr("selected", true)
         })
 
         $("#submit-btn").click(function() {
@@ -83,7 +83,7 @@
                     rate: $("#traffic-rate").val(),
                     enable: $("#enable-node").is(':checked'),
                     level: $("#node-level").val(),
-                    kid: $("#node-type").val(),
+                    kind: $("#node-type").val(),
                     detail: $("#node-detail").val(),
                     "_csrf": "{{ ctx.csrf }}"
                 },
