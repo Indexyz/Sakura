@@ -8,17 +8,17 @@ module.exports = app => {
         * getNotUsedPort() {
             const users = yield this.ctx.model.User.find({});
             users.map(user => user.port);
-            const portRange = listUtils.range(app.config.port.max, app.config.port.min);
+            const portRange = new Set(listUtils.range(app.config.port.max, app.config.port.min));
             for (const item of users) {
-                portRange.remove(item);
+                portRange.delete(item)
             }
 
             if (portRange.length === 0) {
                 throw new Error('Port pool is empty');
             }
 
-            return portRange[Math.floor(
-                Math.random() * (portRange.length + 1)
+            return [...portRange][Math.floor(
+                Math.random() * (portRange.size + 1)
             )];
 
         }
