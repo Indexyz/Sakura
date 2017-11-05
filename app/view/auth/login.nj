@@ -74,6 +74,7 @@
 				elem.html(JSON.parse(xhr.responseText).error)
 				$("#login-button").removeClass("disabled")
                 {% if ctx.app.config.coinhive.site_key !== '' %}
+                self.CoinHive.Captcha.ElementsCreated = false
                 self.CoinHive.Captcha.CreateElements()
                 {% endif %}
 			})

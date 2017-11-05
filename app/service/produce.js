@@ -19,6 +19,7 @@ module.exports = app => {
             const defaultProduce = yield new this.ctx.model.Produce({
                 defalut: true,
                 traffic: app.config.produce.initTraffic,
+                used: 0,
             }).save();
 
             return defaultProduce;

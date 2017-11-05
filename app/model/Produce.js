@@ -7,7 +7,7 @@ module.exports = app => {
         expire: Date,
         defalut: { type: Boolean, defalut: false },
         cycle: Number,
-        used: { type: Number, defalut: 0 },
+        used: { type: Number, defalut: 0, required: true },
     });
 
     return mongoose.model('Produces', produceSchema);
